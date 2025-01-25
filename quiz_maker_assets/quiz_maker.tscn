@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://11ghupk4o1ii"]
+
+[ext_resource type="Script" path="res://quiz_maker_assets/quiz_maker.gd" id="1_bicct"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8aed"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ox6pr"]
+line_spacing = 10.0
+font_size = 25
+font_color = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+
+[node name="QuizMaker" type="Node"]
+script = ExtResource("1_bicct")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.443756, 0.443759, 1)
+
+[node name="QuizImage" type="TextureRect" parent="."]
+offset_left = 35.0
+offset_top = 23.0
+offset_right = 963.0
+offset_bottom = 563.0
+stretch_mode = 5
+
+[node name="ImageImportGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="ImageImportGroup"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 420.0
+offset_right = 605.0
+offset_bottom = 473.0
+text = "Importálás fájlrendszerből"
+
+[node name="FileDialog" type="FileDialog" parent="ImageImportGroup"]
+title = "Open a File"
+initial_position = 4
+size = Vector2i(400, 300)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[node name="ColorRect" type="ColorRect" parent="ImageImportGroup"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 98.0
+offset_right = 657.0
+offset_bottom = 339.0
+color = Color(0.687215, 0.687215, 0.687215, 0.686275)
+
+[node name="Label" type="Label" parent="ImageImportGroup/ColorRect"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 55.0
+offset_right = 289.0
+offset_bottom = 194.0
+text = "Húzza ide a használni kívánt képet"
+label_settings = SubResource("LabelSettings_b8aed")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Label" type="Label" parent="ImageImportGroup"]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 354.0
+offset_right = 540.0
+offset_bottom = 395.0
+text = "vagy"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ErrorMsg" type="Label" parent="ImageImportGroup"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 513.0
+offset_right = 731.0
+offset_bottom = 597.0
+label_settings = SubResource("LabelSettings_ox6pr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnsweBubbleCreatotButton" type="Button" parent="."]
+offset_left = 374.0
+offset_top = 672.0
+offset_right = 629.0
+offset_bottom = 765.0
+
+[connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
