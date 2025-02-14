@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://drnit6xvsphed"]
+
+[node name="AnswerBubble" type="Node"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_right = 227.0
+offset_bottom = 41.0
+placeholder_text = "Írja be a buborék szövegét!"
+alignment = 1
