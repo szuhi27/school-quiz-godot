@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://11ghupk4o1ii"]
+[gd_scene load_steps=5 format=3 uid="uid://11ghupk4o1ii"]
 
 [ext_resource type="Script" path="res://quiz_maker_assets/quiz_maker.gd" id="1_bicct"]
+[ext_resource type="Script" path="res://quiz_maker_assets/answer_bubble_creator.gd" id="2_y8m76"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8aed"]
 font_size = 25
@@ -123,11 +124,19 @@ label_settings = SubResource("LabelSettings_ox6pr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnswerBubbleControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_y8m76")
+
 [node name="AnsweBubbleCreatotButton" type="Button" parent="."]
 offset_left = 374.0
 offset_top = 672.0
 offset_right = 629.0
 offset_bottom = 765.0
+text = "Új válaszbuborék létrehozása"
 
 [connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
