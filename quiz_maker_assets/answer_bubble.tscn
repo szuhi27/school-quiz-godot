@@ -1,9 +1,51 @@
-[gd_scene format=3 uid="uid://drnit6xvsphed"]
+[gd_scene load_steps=4 format=3 uid="uid://drnit6xvsphed"]
+
+[ext_resource type="Script" path="res://quiz_maker_assets/answer_bubble_contol.gd" id="1_wqhkn"]
+[ext_resource type="Texture2D" uid="uid://d2avstl64ot5l" path="res://quiz_maker_assets/bin.png" id="2_nhfb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmv4v"]
+size = Vector2(292, 45)
 
 [node name="AnswerBubble" type="Node2D"]
+script = ExtResource("1_wqhkn")
 
 [node name="LineEdit" type="LineEdit" parent="."]
-offset_right = 227.0
-offset_bottom = 41.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = -16.0
+offset_right = 108.5
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 placeholder_text = "Írja be a buborék szövegét!"
 alignment = 1
+expand_to_text_length = true
+
+[node name="DeleteButton" type="Button" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 122.0
+offset_top = -15.0
+offset_right = 153.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+icon = ExtResource("2_nhfb2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-108, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(133, 19)
+shape = SubResource("RectangleShape2D_qmv4v")
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
