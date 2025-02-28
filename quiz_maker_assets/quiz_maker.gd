@@ -1,5 +1,7 @@
 extends Node
 
+var _image = Image
+
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
 
@@ -16,14 +18,16 @@ func _on_files_dropped(files):
 		_load_image(files[0])
 
 func _load_image(path: String):
-	var image = Image.new()
-	var try_load_image = image.load(path)
+	_image = Image.new()
+	var try_load_image = _image.load(path)
 	
 	if try_load_image == OK:
-		image.load(path)
+		_image.load(path)
 		var image_texture = ImageTexture.new()
-		image_texture.set_image(image)
+		image_texture.set_image(_image)
 		$Control/QuizImage.texture = image_texture
 		$ImageImportGroup.visible = false
 	else :
 		$ImageImportGroup/ErrorMsg.text = "Nem megfelelő fájltípus!"
+
+#=====SAVING THE QUIZ=====
