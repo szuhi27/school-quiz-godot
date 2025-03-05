@@ -1,6 +1,7 @@
 extends Node
 
 var _image = Image
+var _zipfile = ZIPPacker
 
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
@@ -31,3 +32,14 @@ func _load_image(path: String):
 		$ImageImportGroup/ErrorMsg.text = "Nem megfelelő fájltípus!"
 
 #=====SAVING THE QUIZ=====
+
+func _on_save_button_pressed() -> void:
+	$SaveFileDialog.popup()
+
+func _on_save_file_dialog_confirmed() -> void:
+	pass # Replace with function body.
+
+func _save_quiz():
+	_zipfile = ZIPPacker.new()
+	_zipfile.write_file(_image)
+	_zipfile.close()

@@ -133,6 +133,13 @@ offset_bottom = 40.0
 script = ExtResource("2_y8m76")
 answer_bubble = ExtResource("3_wj6vt")
 
+[node name="SaveButton" type="Button" parent="."]
+offset_left = 773.0
+offset_top = 696.0
+offset_right = 895.0
+offset_bottom = 748.0
+text = "Mentés"
+
 [node name="AnsweBubbleCreatotButton" type="Button" parent="."]
 offset_left = 374.0
 offset_top = 672.0
@@ -140,7 +147,20 @@ offset_right = 629.0
 offset_bottom = 765.0
 text = "Új válaszbuborék létrehozása"
 
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+initial_position = 4
+size = Vector2i(400, 300)
+ok_button_text = "Save"
+dialog_hide_on_ok = true
+access = 2
+filters = PackedStringArray("*.zip")
+show_hidden_files = true
+use_native_dialog = true
+
 [connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="button_down" from="AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_down"]
 [connection signal="button_up" from="AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_up"]
+[connection signal="confirmed" from="SaveFileDialog" to="." method="_on_save_file_dialog_confirmed"]
