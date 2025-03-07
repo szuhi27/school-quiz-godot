@@ -2,6 +2,8 @@ extends Node
 
 var _image = Image
 var _zipfile = ZIPPacker
+var _zip_path
+var _image_name
 
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
@@ -28,18 +30,31 @@ func _load_image(path: String):
 		image_texture.set_image(_image)
 		$Control/QuizImage.texture = image_texture
 		$ImageImportGroup.visible = false
+		_image_name = path.get_file()
+		$BubbleAdder.show()
 	else :
 		$ImageImportGroup/ErrorMsg.text = "Nem megfelelő fájltípus!"
 
 #=====SAVING THE QUIZ=====
 
 func _on_save_button_pressed() -> void:
+	$SaveFileDialog.current_file = _image_name.get_slice(".",0)
 	$SaveFileDialog.popup()
-
-func _on_save_file_dialog_confirmed() -> void:
-	pass # Replace with function body.
 
 func _save_quiz():
 	_zipfile = ZIPPacker.new()
+	var err = _zipfile.open(_zip_path, _zipfile.APPEND_CREATE)
+	if err != OK:
+		return err
 	_zipfile.write_file(_image)
 	_zipfile.close()
+
+
+func _on_save_file_dialog_dir_selected(dir: String) -> void:
+	#var success = DirAccess.copy_absolute(_zip_path, $SaveFileDialog.current_path)
+	#if success == OK:
+		_zip_path = dir
+		_save_quiz()
+		print("ZIP successfully exported to: ")
+	#else:
+	#	print("Failed to export ZIP file!")

@@ -79,7 +79,6 @@ ok_button_text = "Open"
 dialog_hide_on_ok = true
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png", "*.jpg", "*.jpeg", "*.gif")
 show_hidden_files = true
 use_native_dialog = true
 
@@ -133,14 +132,21 @@ offset_bottom = 40.0
 script = ExtResource("2_y8m76")
 answer_bubble = ExtResource("3_wj6vt")
 
-[node name="SaveButton" type="Button" parent="."]
+[node name="BubbleAdder" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveButton" type="Button" parent="BubbleAdder"]
 offset_left = 773.0
 offset_top = 696.0
 offset_right = 895.0
 offset_bottom = 748.0
 text = "Mentés"
 
-[node name="AnsweBubbleCreatotButton" type="Button" parent="."]
+[node name="AnsweBubbleCreatotButton" type="Button" parent="BubbleAdder"]
 offset_left = 374.0
 offset_top = 672.0
 offset_right = 629.0
@@ -160,7 +166,7 @@ use_native_dialog = true
 
 [connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
-[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="button_down" from="AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_down"]
-[connection signal="button_up" from="AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_up"]
-[connection signal="confirmed" from="SaveFileDialog" to="." method="_on_save_file_dialog_confirmed"]
+[connection signal="pressed" from="BubbleAdder/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="button_down" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_down"]
+[connection signal="button_up" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleControl" method="_on_answe_bubble_creatot_button_button_up"]
+[connection signal="dir_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_dir_selected"]
