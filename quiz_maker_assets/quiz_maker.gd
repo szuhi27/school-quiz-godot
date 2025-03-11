@@ -2,7 +2,6 @@ extends Node
 
 var _image = Image
 var _zipfile = ZIPPacker
-var _zip_path
 var _image_name
 
 func _ready() -> void:
@@ -41,20 +40,17 @@ func _on_save_button_pressed() -> void:
 	$SaveFileDialog.current_file = _image_name.get_slice(".",0)
 	$SaveFileDialog.popup()
 
-func _save_quiz():
+#this works, dir_select does not
+func _on_save_file_dialog_file_selected(path: String) -> void:
+	_save_quiz(path)
+
+func _save_quiz(path: String):
 	_zipfile = ZIPPacker.new()
-	var err = _zipfile.open(_zip_path, _zipfile.APPEND_CREATE)
+	var err = _zipfile.open(path, _zipfile.APPEND_CREATE)
 	if err != OK:
 		return err
-	_zipfile.write_file(_image)
+	_zipfile.start_file(_image_name)
+	_zipfile.write_file(_image.get_data())
+	_zipfile.close_file()
 	_zipfile.close()
-
-
-func _on_save_file_dialog_dir_selected(dir: String) -> void:
-	#var success = DirAccess.copy_absolute(_zip_path, $SaveFileDialog.current_path)
-	#if success == OK:
-		_zip_path = dir
-		_save_quiz()
-		print("ZIP successfully exported to: ")
-	#else:
-	#	print("Failed to export ZIP file!")
+	
