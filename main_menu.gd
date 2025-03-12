@@ -15,3 +15,4 @@ func  _on_files_dropped(files):
 	var image_texture = ImageTexture.new()
 	image_texture.set_image(image)
 	$Control/TextureRect.texture = image_texture
+	#var byt = Marshalls.base64_to_raw(base64_string)
