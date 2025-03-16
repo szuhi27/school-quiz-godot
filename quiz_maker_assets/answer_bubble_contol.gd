@@ -26,3 +26,12 @@ func _on_move_button_button_down() -> void:
 
 func _on_move_button_button_up() -> void:
 	selected = false
+
+func get_text_lineedit() -> String:
+	return $Control/LineEdit.text
+
+func get_pos_x_lineedit() -> float:
+	return $Control/LineEdit.global_position.x
+
+func get_pos_y_lineedit() -> float:
+	return $Control/LineEdit.global_position.y

@@ -53,9 +53,26 @@ func _save_quiz(path: String):
 	var base64_string = Marshalls.raw_to_base64(_image_data)
 	json_data["image"] = base64_string
 	
+	json_data["answer_bubbles"] = _get_bubble_data_array()
+	
 	var json_string = JSON.stringify(json_data)
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(json_string)
 	file.close()
 	
 	#todo: go to main screen
+
+func _get_bubble_data_array() -> Array:
+	var bubble_data_array = []
+	
+	for child in $AnswerBubbleGroup.get_children():
+		#mayb there should be some check here but cant think of any
+		bubble_data_array.append({
+			"text": child.get_text_lineedit(),
+			"global_position":  {
+				"x": child.get_pos_x_lineedit(),
+				"y": child.get_pos_y_lineedit()
+			}
+		})
+	
+	return bubble_data_array
