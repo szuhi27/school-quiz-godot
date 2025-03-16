@@ -27,7 +27,7 @@ func _load_image(path: String):
 		
 		var image_texture = ImageTexture.new()
 		image_texture.set_image(image)
-		$Control/QuizImage.texture = image_texture
+		$Control2/QuizImage.texture = image_texture
 		$ImageImportGroup.visible = false
 		
 		_image_file_name = path.get_file()

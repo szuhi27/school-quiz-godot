@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://quiz_maker_assets/quiz_maker.gd" id="1_bicct"]
 [ext_resource type="Script" path="res://quiz_maker_assets/answer_bubble_creator.gd" id="2_y8m76"]
-[ext_resource type="PackedScene" uid="uid://drnit6xvsphed" path="res://quiz_maker_assets/answer_bubble.tscn" id="3_wj6vt"]
+[ext_resource type="PackedScene" uid="uid://drnit6xvsphed" path="res://quiz_maker_assets/new_answer_bubble.tscn" id="3_wj6vt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b8aed"]
 font_size = 25
@@ -34,20 +34,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0.443756, 0.443759, 1)
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 19.0
-offset_top = 16.0
-offset_right = 978.0
-offset_bottom = 544.0
-metadata/_edit_use_anchors_ = true
-
-[node name="QuizImage" type="TextureRect" parent="Control"]
+[node name="QuizImage" type="TextureRect" parent="Control2"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -383.0
+offset_right = 487.0
+offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
@@ -126,9 +123,11 @@ vertical_alignment = 1
 
 [node name="AnswerBubbleGroup" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_y8m76")
 answer_bubble = ExtResource("3_wj6vt")
 

@@ -31,7 +31,7 @@ func get_text_lineedit() -> String:
 	return $Control/LineEdit.text
 
 func get_pos_x_lineedit() -> float:
-	return $Control/LineEdit.global_position.x
+	return global_position.x
 
 func get_pos_y_lineedit() -> float:
-	return $Control/LineEdit.global_position.y
+	return global_position.y

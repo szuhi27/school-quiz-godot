@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drnit6xvsphed"]
 
-[ext_resource type="Script" path="res://quiz_maker_assets/answer_bubble_contol.gd" id="1_wqhkn"]
+[ext_resource type="Script" path="res://quiz_maker_assets/new_answer_bubble_contol.gd" id="1_wqhkn"]
 [ext_resource type="Texture2D" uid="uid://d2avstl64ot5l" path="res://quiz_maker_assets/bin.png" id="2_nhfb2"]
 [ext_resource type="Texture2D" uid="uid://dpyj23cpgtdgo" path="res://quiz_maker_assets/move.png" id="3_2sydx"]
 
@@ -17,12 +17,15 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = -108.0
 offset_top = -16.0
 offset_right = 109.0
