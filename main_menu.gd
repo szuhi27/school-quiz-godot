@@ -6,17 +6,29 @@ const WRONG_FILE : String = "Helytelen (vagy sérült) file! Kérem válasszon e
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
 
+func _on_import_quiz_button_pressed() -> void:
+	print("rtste")
+	$ImportQuizFileDialog.popup()
+
+func _on_import_quiz_file_dialog_file_selected(path: String) -> void:
+	_try_load_quiz_file(path)
+
 func  _on_files_dropped(files):
 	if files.size() > 1:
-		$Control2/ErrorLabel.text = "Csak egy filet válasszon ki!"
-	elif files[0].get_extension() != "json":
-		$Control2/ErrorLabel.text = WRONG_FILE
+		$ImortGroup/ErrorLabel.text = "Csak egy filet válasszon ki!"
 	else:
-		var file = FileAccess.open(files[0], FileAccess.READ)
+		_try_load_quiz_file(files[0])
+
+func _try_load_quiz_file(path: String):
+	if path.get_extension() != "json":
+		$ImortGroup/ErrorLabel.text = WRONG_FILE
+	else:
+		var file = FileAccess.open(path, FileAccess.READ)
 		_load_quiz(file.get_as_text())
 		file.close()
 
-#todo: validate the json
+#validation does not look too nice, but seems like there is not a better way in godot for error handling
+#also maybe this is too overkill especially for the scope of the project, but practice
 func _load_quiz(_json_string: String):
 	var json_string = _json_string
 	var json = JSON.new()
@@ -34,12 +46,14 @@ func _load_quiz(_json_string: String):
 				$Control2/QuizImage.texture = image_texture
 				
 				_create_answer_bubbles(data["answer_bubbles"])
+				
+				$ImortGroup.hide()
 			else:
-				$Control2/ErrorLabel.text = WRONG_FILE
+				$ImortGroup/ErrorLabel.text = WRONG_FILE
 		else:
-			$Control2/ErrorLabel.text = WRONG_FILE
+			$ImortGroup/ErrorLabel.text = WRONG_FILE
 	else:
-		$Control2/ErrorLabel.text = WRONG_FILE
+		$ImortGroup/ErrorLabel.text = WRONG_FILE
 
 func _create_answer_bubbles(data: Array):
 	for i in data:

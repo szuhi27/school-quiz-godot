@@ -50,6 +50,39 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
+[node name="BubbleAdder" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveButton" type="Button" parent="BubbleAdder"]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 696.0
+offset_right = 895.0
+offset_bottom = 748.0
+text = "Mentés"
+
+[node name="AnsweBubbleCreatotButton" type="Button" parent="BubbleAdder"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 672.0
+offset_right = 629.0
+offset_bottom = 765.0
+text = "Új válaszbuborék létrehozása"
+
+[node name="AnswerBubbleGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_y8m76")
+answer_bubble = ExtResource("3_wj6vt")
+
 [node name="ImageImportGroup" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -121,39 +154,6 @@ label_settings = SubResource("LabelSettings_ox6pr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnswerBubbleGroup" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_y8m76")
-answer_bubble = ExtResource("3_wj6vt")
-
-[node name="BubbleAdder" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SaveButton" type="Button" parent="BubbleAdder"]
-layout_mode = 0
-offset_left = 773.0
-offset_top = 696.0
-offset_right = 895.0
-offset_bottom = 748.0
-text = "Mentés"
-
-[node name="AnsweBubbleCreatotButton" type="Button" parent="BubbleAdder"]
-layout_mode = 0
-offset_left = 374.0
-offset_top = 672.0
-offset_right = 629.0
-offset_bottom = 765.0
-text = "Új válaszbuborék létrehozása"
-
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
 initial_position = 4
@@ -165,11 +165,11 @@ filters = PackedStringArray("*.json")
 show_hidden_files = true
 use_native_dialog = true
 
-[connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
-[connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BubbleAdder/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="button_down" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_down"]
 [connection signal="button_up" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_up"]
+[connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="confirmed" from="SaveFileDialog" to="." method="_on_save_file_dialog_confirmed"]
 [connection signal="dir_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_dir_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
