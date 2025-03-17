@@ -154,6 +154,13 @@ label_settings = SubResource("LabelSettings_ox6pr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ToMainMenuButton" type="Button" parent="."]
+offset_left = 44.0
+offset_top = 702.0
+offset_right = 197.0
+offset_bottom = 764.0
+text = "Vissza a főmenübe"
+
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
 initial_position = 4
@@ -170,6 +177,7 @@ use_native_dialog = true
 [connection signal="button_up" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_up"]
 [connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
 [connection signal="confirmed" from="SaveFileDialog" to="." method="_on_save_file_dialog_confirmed"]
 [connection signal="dir_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_dir_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]

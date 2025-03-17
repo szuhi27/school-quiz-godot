@@ -6,6 +6,10 @@ var _image_data
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
 
+
+func _on_to_main_menu_button_pressed() -> void:
+	queue_free()
+
 func _on_button_pressed() -> void:
 	$ImageImportGroup/FileDialog.popup()
 

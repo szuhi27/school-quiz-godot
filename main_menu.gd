@@ -1,13 +1,18 @@
 extends Node
 
 @export var question_bubble : PackedScene
+@export var creator_scene: PackedScene
+
 const WRONG_FILE : String = "Helytelen (vagy sérült) file! Kérem válasszon egy itt korábban létrehozott '.json' filet!"
 
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
 
+func _on_new_quiz_button_pressed() -> void:
+	var new_creator_scene = creator_scene.instantiate()
+	add_child(new_creator_scene)
+
 func _on_import_quiz_button_pressed() -> void:
-	print("rtste")
 	$ImportQuizFileDialog.popup()
 
 func _on_import_quiz_file_dialog_file_selected(path: String) -> void:
@@ -15,13 +20,13 @@ func _on_import_quiz_file_dialog_file_selected(path: String) -> void:
 
 func  _on_files_dropped(files):
 	if files.size() > 1:
-		$ImortGroup/ErrorLabel.text = "Csak egy filet válasszon ki!"
+		$ImportGroup/ErrorLabel.text = "Csak egy filet válasszon ki!"
 	else:
 		_try_load_quiz_file(files[0])
 
 func _try_load_quiz_file(path: String):
 	if path.get_extension() != "json":
-		$ImortGroup/ErrorLabel.text = WRONG_FILE
+		$ImportGroup/ErrorLabel.text = WRONG_FILE
 	else:
 		var file = FileAccess.open(path, FileAccess.READ)
 		_load_quiz(file.get_as_text())
@@ -47,13 +52,13 @@ func _load_quiz(_json_string: String):
 				
 				_create_answer_bubbles(data["answer_bubbles"])
 				
-				$ImortGroup.hide()
+				$ImportGroup.hide()
 			else:
-				$ImortGroup/ErrorLabel.text = WRONG_FILE
+				$ImportGroup/ErrorLabel.text = WRONG_FILE
 		else:
-			$ImortGroup/ErrorLabel.text = WRONG_FILE
+			$ImportGroup/ErrorLabel.text = WRONG_FILE
 	else:
-		$ImortGroup/ErrorLabel.text = WRONG_FILE
+		$ImportGroup/ErrorLabel.text = WRONG_FILE
 
 func _create_answer_bubbles(data: Array):
 	for i in data:
