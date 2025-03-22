@@ -1,96 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://drnit6xvsphed"]
+[gd_scene load_steps=4 format=3 uid="uid://drnit6xvsphed"]
 
 [ext_resource type="Script" path="res://quiz_maker_assets/new_answer_bubble_contol.gd" id="1_wqhkn"]
-[ext_resource type="Texture2D" uid="uid://d2avstl64ot5l" path="res://quiz_maker_assets/bin.png" id="2_nhfb2"]
+[ext_resource type="Texture2D" uid="uid://dcplhb146q1jg" path="res://quiz_maker_assets/bin_red.png" id="2_6oygw"]
 [ext_resource type="Texture2D" uid="uid://dpyj23cpgtdgo" path="res://quiz_maker_assets/move.png" id="3_2sydx"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_l51x0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmv4v"]
-size = Vector2(270, 41)
-
-[node name="AnswerBubble" type="Node2D"]
-script = ExtResource("1_wqhkn")
-
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = -1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -400.0
+offset_right = -460.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+script = ExtResource("1_wqhkn")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = -108.0
-offset_top = -16.0
-offset_right = 109.0
-offset_bottom = 16.0
-texture = SubResource("CanvasTexture_l51x0")
-
-[node name="LineEdit" type="LineEdit" parent="Control"]
+[node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -108.5
-offset_top = -16.0
-offset_right = 108.5
-offset_bottom = 16.0
+offset_left = -129.0
+offset_top = -37.0
+offset_right = 88.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Írja be a buborék szövegét!"
 alignment = 1
 expand_to_text_length = true
 
-[node name="DeleteButton" type="Button" parent="Control"]
+[node name="DeleteButton" type="Button" parent="LineEdit"]
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 119.0
-offset_top = -15.0
-offset_right = 150.0
-offset_bottom = 14.0
+anchor_bottom = 0.5
+offset_left = 7.5
+offset_top = -14.0
+offset_right = 38.5
+offset_bottom = 15.0
 grow_horizontal = 0
 grow_vertical = 2
-icon = ExtResource("2_nhfb2")
+icon = ExtResource("2_6oygw")
 icon_alignment = 1
 expand_icon = true
 
-[node name="MoveButton" type="TextureButton" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="LineEdit"]
+show_behind_parent = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -36.0
-offset_right = -101.0
-offset_bottom = -11.0
-grow_horizontal = 0
-grow_vertical = 0
-texture_normal = ExtResource("3_2sydx")
-ignore_texture_size = true
-stretch_mode = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-position = Vector2(-1, -2)
+[node name="TextEdit" type="TextureRect" parent="LineEdit"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("3_2sydx")
+expand_mode = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(24, 1)
-shape = SubResource("RectangleShape2D_qmv4v")
-
-[connection signal="pressed" from="Control/DeleteButton" to="." method="_on_delete_button_pressed"]
-[connection signal="button_down" from="Control/MoveButton" to="." method="_on_move_button_button_down"]
-[connection signal="button_up" from="Control/MoveButton" to="." method="_on_move_button_button_up"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="gui_input" from="LineEdit" to="." method="_on_line_edit_gui_input"]
+[connection signal="pressed" from="LineEdit/DeleteButton" to="LineEdit" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="LineEdit/DeleteButton" to="." method="_on_delete_button_pressed"]

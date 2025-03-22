@@ -3,7 +3,7 @@ extends Control
 
 @export var answer_bubble : PackedScene
 
-var _new_bubble : Node2D
+var _new_bubble : Control
 
 func _physics_process(delta):
 	if(_new_bubble != null):
