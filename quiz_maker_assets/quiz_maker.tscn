@@ -73,8 +73,8 @@ offset_right = 629.0
 offset_bottom = 765.0
 text = "Új válaszbuborék létrehozása"
 
-[node name="AnswerBubbleGroup" type="Control" parent="."]
-layout_mode = 3
+[node name="AnswerBubbleGroup" type="Control" parent="BubbleAdder"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -173,8 +173,8 @@ show_hidden_files = true
 use_native_dialog = true
 
 [connection signal="pressed" from="BubbleAdder/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="button_down" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_down"]
-[connection signal="button_up" from="BubbleAdder/AnsweBubbleCreatotButton" to="AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_up"]
+[connection signal="button_down" from="BubbleAdder/AnsweBubbleCreatotButton" to="BubbleAdder/AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_down"]
+[connection signal="button_up" from="BubbleAdder/AnsweBubbleCreatotButton" to="BubbleAdder/AnswerBubbleGroup" method="_on_answe_bubble_creatot_button_button_up"]
 [connection signal="pressed" from="ImageImportGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="ImageImportGroup/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]

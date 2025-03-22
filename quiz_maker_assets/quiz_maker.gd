@@ -69,7 +69,7 @@ func _save_quiz(path: String):
 func _get_bubble_data_array() -> Array:
 	var bubble_data_array = []
 	
-	for child in $AnswerBubbleGroup.get_children():
+	for child in $BubbleAdder/AnswerBubbleGroup.get_children():
 		#mayb there should be some check here but cant think of any
 		bubble_data_array.append({
 			"text": child.get_text_lineedit(),

@@ -2,7 +2,7 @@ extends Node2D
 
 
 func set_text(t: String):
-	$LineEdit.text = t
+	$Control/LineEdit.text = t
 
 func set_global_position_x(f : float):
 	global_position.x = f

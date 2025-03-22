@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://irdworseorky"]
+
+[ext_resource type="Script" path="res://main_menu_assets/answer_bubble_control.gd" id="1_5mfd4"]
+
+[node name="AnswerBubble" type="LineEdit"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -15.5
+offset_right = 46.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "text"
+alignment = 1
+editable = false
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+flat = true
+script = ExtResource("1_5mfd4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1.17319e-07, 0.0938013, 0.12856, 1)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

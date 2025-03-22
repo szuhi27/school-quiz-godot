@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvt3j2ejded12"]
+[gd_scene load_steps=6 format=3 uid="uid://dvt3j2ejded12"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1x82x"]
 [ext_resource type="PackedScene" uid="uid://11ghupk4o1ii" path="res://quiz_maker_assets/quiz_maker.tscn" id="2_ka7f0"]
 [ext_resource type="PackedScene" uid="uid://jj76fgx27cgu" path="res://main_menu_assets/question_bubble.tscn" id="2_lih13"]
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
+[ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_1x82x")
 question_bubble = ExtResource("2_lih13")
+answer_bubble = ExtResource("6_v6kc5")
 creator_scene = ExtResource("2_ka7f0")
 
 [node name="Control2" type="Control" parent="."]
@@ -43,7 +45,7 @@ offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="QuestionGroup" type="Control" parent="."]
 layout_mode = 3
@@ -114,6 +116,46 @@ access = 2
 filters = PackedStringArray("*.json")
 show_hidden_files = true
 use_native_dialog = true
+
+[node name="AnswerBubblesGroup" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -241.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="AnswerBubblesGroup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.692609, 0.692609, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AnswerBubblesGroup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="AnswerBubblesGridContainer" type="GridContainer" parent="AnswerBubblesGroup/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 6
+columns = 4
 
 [connection signal="pressed" from="ImportGroup/ImportQuizButton" to="." method="_on_import_quiz_button_pressed"]
 [connection signal="pressed" from="ImportGroup/NewQuizButton" to="." method="_on_new_quiz_button_pressed"]

@@ -1,6 +1,7 @@
 extends Node
 
 @export var question_bubble : PackedScene
+@export var answer_bubble : PackedScene
 @export var creator_scene: PackedScene
 
 const WRONG_FILE : String = "Helytelen (vagy sérült) file! Kérem válasszon egy itt korábban létrehozott '.json' filet!"
@@ -50,6 +51,9 @@ func _load_quiz(_json_string: String):
 				image_texture.set_image(image)
 				$Control2/QuizImage.texture = image_texture
 				
+				_create_question_bubbles(data["answer_bubbles"])
+				
+				$AnswerBubblesGroup.show()
 				_create_answer_bubbles(data["answer_bubbles"])
 				
 				$ImportGroup.hide()
@@ -59,13 +63,6 @@ func _load_quiz(_json_string: String):
 			$ImportGroup/ErrorLabel.text = WRONG_FILE
 	else:
 		$ImportGroup/ErrorLabel.text = WRONG_FILE
-
-func _create_answer_bubbles(data: Array):
-	for i in data:
-		var _new_question = question_bubble.instantiate()
-		_new_question.set_global_position_x(i.global_position.x)
-		_new_question.set_global_position_y(i.global_position.y)
-		$QuestionGroup.add_child(_new_question)
 
 func _validate_json(data: Variant) -> bool:
 	if not (data.has("image") and data.has("answer_bubbles")):
@@ -78,3 +75,18 @@ func _validate_json(data: Variant) -> bool:
 			return false
 	
 	return true
+
+func _create_question_bubbles(data: Array):
+	for i in data:
+		var new_question = question_bubble.instantiate()
+		new_question.set_global_position_x(i.global_position.x)
+		new_question.set_global_position_y(i.global_position.y)
+		$QuestionGroup.add_child(new_question)
+
+func _create_answer_bubbles(data: Array):
+	data.shuffle()
+	
+	for i in data:
+		var new_answer = answer_bubble.instantiate()
+		new_answer.set_text(i.text)
+		$AnswerBubblesGroup/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
