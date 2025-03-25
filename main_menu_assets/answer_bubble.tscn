@@ -3,17 +3,8 @@
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubble_control.gd" id="1_5mfd4"]
 
 [node name="AnswerBubble" type="LineEdit"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -15.5
-offset_right = 46.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 67.0625
+offset_bottom = 31.0
 text = "text"
 alignment = 1
 editable = false

@@ -1,16 +1,27 @@
 extends LineEdit
 
-var selected = false
-var mouse_offset = Vector2(0,0)
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var answer_data = str(text)
+	set_drag_preview(_create_drag_preview(answer_data))
+	return answer_data
 
-
-
-func _on_gui_input(event: InputEvent) -> void:
-
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		print_debug("wn 2")
-		#if event.pressed:
-			#mouse_offset = position - get_global_mouse_position()
-			#selected = true
-		#else:
-			#selected = false
+func _create_drag_preview(t : String) -> Variant:
+	var le = LineEdit.new()
+	le.expand_to_text_length = true
+	le.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	le.flat = true
+	le.set_text(t)
+	
+	var clr = ColorRect.new()
+	clr.color = Color.BLACK
+	clr.show_behind_parent = true
+	clr.set_anchors_preset(Control.PRESET_FULL_RECT)
+	
+	le.add_child(clr)
+	
+	var prev = Control.new()
+	prev.add_child(le)
+	le.position.x = -0.5 * le.size.x
+	le.position.y = -0.5 * le.size.y
+	
+	return prev

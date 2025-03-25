@@ -53,7 +53,7 @@ func _load_quiz(_json_string: String):
 				
 				_create_question_bubbles(data["answer_bubbles"])
 				
-				$AnswerBubblesGroup.show()
+				$Control2/AnswerBubblesGroup.show()
 				_create_answer_bubbles(data["answer_bubbles"])
 				
 				$ImportGroup.hide()
@@ -81,7 +81,7 @@ func _create_question_bubbles(data: Array):
 		var new_question = question_bubble.instantiate()
 		new_question.set_global_position_x(i.global_position.x)
 		new_question.set_global_position_y(i.global_position.y)
-		$QuestionGroup.add_child(new_question)
+		$Control2/QuestionGroup.add_child(new_question)
 
 func _create_answer_bubbles(data: Array):
 	data.shuffle()
@@ -89,4 +89,4 @@ func _create_answer_bubbles(data: Array):
 	for i in data:
 		var new_answer = answer_bubble.instantiate()
 		new_answer.set_text(i.text)
-		$AnswerBubblesGroup/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
+		$Control2/AnswerBubblesGroup/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
