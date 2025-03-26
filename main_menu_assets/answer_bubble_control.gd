@@ -1,9 +1,13 @@
 extends LineEdit
 
 func _get_drag_data(at_position: Vector2) -> Variant:
-	var answer_data = str(text)
-	set_drag_preview(_create_drag_preview(answer_data))
-	return answer_data
+	var data = {}
+	data["text"] = text
+	data["origin_node"] = self
+	data["origin_panel"] = "grid"
+	
+	set_drag_preview(_create_drag_preview(text))
+	return data
 
 func _create_drag_preview(t : String) -> Variant:
 	var le = LineEdit.new()

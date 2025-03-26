@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvt3j2ejded12"]
+[gd_scene load_steps=7 format=3 uid="uid://dvt3j2ejded12"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1x82x"]
 [ext_resource type="PackedScene" uid="uid://11ghupk4o1ii" path="res://quiz_maker_assets/quiz_maker.tscn" id="2_ka7f0"]
 [ext_resource type="PackedScene" uid="uid://jj76fgx27cgu" path="res://main_menu_assets/question_bubble.tscn" id="2_lih13"]
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
+[ext_resource type="Script" path="res://main_menu_assets/answer_bubbles_group_control.gd" id="5_ofu2u"]
 [ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
 
 [node name="MainMenu" type="Node"]
@@ -64,6 +65,8 @@ anchor_bottom = 1.0
 offset_top = -232.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("5_ofu2u")
+answer_bubble = ExtResource("6_v6kc5")
 
 [node name="ColorRect2" type="ColorRect" parent="Control2/AnswerBubblesGroup"]
 layout_mode = 1
@@ -74,17 +77,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.692609, 0.692609, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control2/AnswerBubblesGroup"]
-clip_contents = false
+[node name="MarginContainer" type="MarginContainer" parent="Control2/AnswerBubblesGroup"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control2/AnswerBubblesGroup/MarginContainer"]
+clip_contents = false
+layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="AnswerBubblesGridContainer" type="GridContainer" parent="Control2/AnswerBubblesGroup/ScrollContainer"]
+[node name="AnswerBubblesGridContainer" type="GridContainer" parent="Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer"]
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 6
