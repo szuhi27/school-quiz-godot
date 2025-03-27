@@ -81,6 +81,7 @@ func _create_question_bubbles(data: Array):
 		var new_question = question_bubble.instantiate()
 		new_question.set_global_position_x(i.global_position.x)
 		new_question.set_global_position_y(i.global_position.y)
+		new_question.set_correct_answer(i.text)
 		$Control2/QuestionGroup.add_child(new_question)
 
 func _create_answer_bubbles(data: Array):
@@ -90,3 +91,8 @@ func _create_answer_bubbles(data: Array):
 		var new_answer = answer_bubble.instantiate()
 		new_answer.set_text(i.text)
 		$Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
+
+
+func _on_check_button_pressed() -> void:
+	for question in $Control2/QuestionGroup.get_children():
+		question.check_answer()

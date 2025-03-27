@@ -1,19 +1,24 @@
 extends LineEdit
 
-var size_x_before_change : float
-var base_size_x
-var base_position
+var _size_x_before_change : float
+var _base_size_x
+var _base_position
+var _correct_answer
 
 func _ready() -> void:
-	size_x_before_change = size.x
-	base_size_x = size.x
-	base_position = Vector2(global_position.x, global_position.y)
+	_size_x_before_change = size.x
+	_base_size_x = size.x
+	_base_position = Vector2(global_position.x, global_position.y)
 
 func set_global_position_x(f : float):
 	global_position.x = f - (size.x / 2.0)
 
 func set_global_position_y(f: float):
 	global_position.y = f - (size.y / 2.0)
+
+func set_correct_answer(answ : String):
+	_correct_answer = answ
+
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data["origin_node"] == self:
@@ -41,8 +46,8 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func reset_to_base():
 	text = ""
-	position = base_position
-	size.x = base_size_x
+	position = _base_position
+	size.x = _base_size_x
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	var data = {}
@@ -73,3 +78,12 @@ func _create_drag_preview(t : String) -> Variant:
 	le.position.y = -0.5 * le.size.y
 	
 	return prev
+
+
+func check_answer():
+	if _correct_answer == text:
+		$ColorRect.color = Color.GREEN
+	else:
+		$ColorRect.color = Color.RED
+	
+	add_theme_color_override("font_uneditable_color",Color.BLACK) 
