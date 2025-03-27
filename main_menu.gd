@@ -58,6 +58,7 @@ func _load_quiz(_json_string: String):
 				$Control2/AnswerBubblesGroup.show()
 				_create_answer_bubbles(data["answer_bubbles"])
 				
+				$ImportGroup/ErrorLabel.text = ""
 				$ImportGroup.hide()
 			else:
 				$ImportGroup/ErrorLabel.text = WRONG_FILE
