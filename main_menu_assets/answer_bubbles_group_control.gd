@@ -2,12 +2,12 @@ extends Control
 
 @export var answer_bubble : PackedScene
 
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data["origin_panel"] == "grid":
 		return false
 	return true
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	data["origin_node"].reset_to_base()
 	
 	var new_answer = answer_bubble.instantiate()
@@ -16,10 +16,10 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 #=====ANSWER CHECKING=====
 
-func _on_answer_bubbles_grid_container_child_exiting_tree(node: Node) -> void:
+func _on_answer_bubbles_grid_container_child_exiting_tree(_node: Node) -> void:
 	_set_check_button(1)
 
-func _on_answer_bubbles_grid_container_child_entered_tree(node: Node) -> void:
+func _on_answer_bubbles_grid_container_child_entered_tree(_node: Node) -> void:
 	_set_check_button(0)
 
 func _set_check_button(m: int): #m = modifier because the way this medhtod works, mayb bad parctice?

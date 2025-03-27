@@ -5,7 +5,7 @@ extends Control
 
 var _new_bubble : Control
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(_new_bubble != null):
 		_new_bubble.global_position = get_global_mouse_position()
 

@@ -1,6 +1,6 @@
 extends LineEdit
 
-func _get_drag_data(at_position: Vector2) -> Variant:
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	var data = {}
 	data["text"] = text
 	data["origin_node"] = self

@@ -20,12 +20,12 @@ func set_correct_answer(answ : String):
 	_correct_answer = answ
 
 
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data["origin_node"] == self:
 		return false
 	return true
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	if self.text == "":
 		self.text = data["text"]
 		if data["origin_panel"] == "grid":
@@ -49,7 +49,7 @@ func reset_to_base():
 	position = _base_position
 	size.x = _base_size_x
 
-func _get_drag_data(at_position: Vector2) -> Variant:
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	var data = {}
 	data["text"] = text
 	data["origin_node"] = self

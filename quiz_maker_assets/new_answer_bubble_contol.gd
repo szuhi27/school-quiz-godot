@@ -3,7 +3,7 @@ extends Control
 var selected = false
 var mouse_offset = Vector2(0, 0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if selected:
 		position = get_global_mouse_position() + mouse_offset
 
