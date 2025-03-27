@@ -36,6 +36,8 @@ func _try_load_quiz_file(path: String):
 #validation does not look too nice, but seems like there is not a better way in godot for error handling
 #also maybe this is too overkill especially for the scope of the project, but practice
 func _load_quiz(_json_string: String):
+	_reset_quiz()
+	
 	var json_string = _json_string
 	var json = JSON.new()
 	var parse_result = json.parse(json_string)
@@ -93,6 +95,24 @@ func _create_answer_bubbles(data: Array):
 		$Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
 
 
+func _reset_quiz():
+	$Control2/QuizImage.texture = null
+	for child in $Control2/QuestionGroup.get_children():
+		child.queue_free()
+	for child in $Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.get_children():
+		child.queue_free()
+	$Control2/AnswerBubblesGroup.hide()
+
+
 func _on_check_button_pressed() -> void:
 	for question in $Control2/QuestionGroup.get_children():
 		question.check_answer()
+	
+	$Control2/AnswerBubblesGroup.hide()
+	$ImportGroup/ErrorLabel.text = ""
+	$ImportGroup.show()
+
+func _on_close_quiz_button_pressed() -> void:
+	_reset_quiz()
+	$ImportGroup/ErrorLabel.text = ""
+	$ImportGroup.show()

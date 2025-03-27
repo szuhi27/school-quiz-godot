@@ -116,6 +116,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Ellenőrzés"
 
+[node name="CloseQuizButton" type="Button" parent="Control2/AnswerBubblesGroup"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -76.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 35.0
+grow_horizontal = 0
+text = "Főmenü"
+
 [node name="ImportGroup" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -143,25 +155,29 @@ autowrap_mode = 3
 
 [node name="ImportQuizButton" type="Button" parent="ImportGroup"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = -58.0
-offset_right = 99.0
-offset_bottom = 58.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = -190.0
+offset_right = 360.0
+offset_bottom = -85.0
+grow_vertical = 0
 text = "Imortáljon egy quizt!"
 
 [node name="NewQuizButton" type="Button" parent="ImportGroup"]
-layout_mode = 0
-offset_left = 661.0
-offset_top = 593.0
-offset_right = 881.0
-offset_bottom = 698.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -330.0
+offset_top = -190.0
+offset_right = -110.0
+offset_bottom = -85.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Új quiz készítése"
 
 [node name="ImportQuizFileDialog" type="FileDialog" parent="."]
@@ -190,6 +206,7 @@ grow_vertical = 2
 [connection signal="child_exiting_tree" from="Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_exiting_tree"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="Control2/AnswerBubblesGroup" method="_on_check_button_pressed"]
+[connection signal="pressed" from="Control2/AnswerBubblesGroup/CloseQuizButton" to="." method="_on_close_quiz_button_pressed"]
 [connection signal="pressed" from="ImportGroup/ImportQuizButton" to="." method="_on_import_quiz_button_pressed"]
 [connection signal="pressed" from="ImportGroup/NewQuizButton" to="." method="_on_new_quiz_button_pressed"]
 [connection signal="file_selected" from="ImportQuizFileDialog" to="." method="_on_import_quiz_file_dialog_file_selected"]
