@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvt3j2ejded12"]
+[gd_scene load_steps=9 format=3 uid="uid://dvt3j2ejded12"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1x82x"]
 [ext_resource type="PackedScene" uid="uid://11ghupk4o1ii" path="res://quiz_maker_assets/quiz_maker.tscn" id="2_ka7f0"]
@@ -6,6 +6,8 @@
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubbles_group_control.gd" id="5_ofu2u"]
 [ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
+[ext_resource type="Theme" uid="uid://cjxetyjm64h4i" path="res://common_assets/button_base_theme.tres" id="7_7bjvb"]
+[ext_resource type="Texture2D" uid="uid://bev36gb65blk4" path="res://images/button.png" id="8_ye4tf"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_1x82x")
@@ -159,11 +161,16 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 140.0
-offset_top = -190.0
-offset_right = 360.0
+offset_top = -198.0
+offset_right = 356.0
 offset_bottom = -85.0
 grow_vertical = 0
-text = "Imortáljon egy quizt!"
+theme = ExtResource("7_7bjvb")
+text = "Importáljon egy quizt!"
+icon = ExtResource("8_ye4tf")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="NewQuizButton" type="Button" parent="ImportGroup"]
 layout_mode = 1
@@ -174,11 +181,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -330.0
 offset_top = -190.0
-offset_right = -110.0
-offset_bottom = -85.0
+offset_right = -114.0
+offset_bottom = -77.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("7_7bjvb")
 text = "Új quiz készítése"
+icon = ExtResource("8_ye4tf")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ImportQuizFileDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
