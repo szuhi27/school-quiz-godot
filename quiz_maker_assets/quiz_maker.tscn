@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://11ghupk4o1ii"]
+[gd_scene load_steps=8 format=3 uid="uid://11ghupk4o1ii"]
 
 [ext_resource type="Script" path="res://quiz_maker_assets/quiz_maker.gd" id="1_bicct"]
+[ext_resource type="Texture2D" uid="uid://dt6e0htf4s2h" path="res://images/texture-2559993_1920.jpg" id="2_2nonu"]
 [ext_resource type="Theme" uid="uid://cjxetyjm64h4i" path="res://common_assets/button_base_theme.tres" id="2_dwp64"]
 [ext_resource type="Script" path="res://quiz_maker_assets/answer_bubble_creator.gd" id="2_y8m76"]
 [ext_resource type="PackedScene" uid="uid://drnit6xvsphed" path="res://quiz_maker_assets/new_answer_bubble.tscn" id="3_wj6vt"]
@@ -24,16 +25,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control2"]
+[node name="BackgroundTextureRect" type="TextureRect" parent="Control2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0.443756, 0.443759, 1)
+texture = ExtResource("2_2nonu")
+expand_mode = 1
 
 [node name="QuizImage" type="TextureRect" parent="Control2"]
 layout_mode = 1
@@ -54,16 +54,26 @@ stretch_mode = 5
 [node name="BubbleAdder" type="Control" parent="."]
 visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="SaveButton" type="Button" parent="BubbleAdder"]
-layout_mode = 0
-offset_left = 771.0
-offset_top = 666.0
-offset_right = 955.0
-offset_bottom = 762.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = -117.0
+offset_right = -35.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("2_dwp64")
 text = "Mentés"
 flat = true
@@ -71,13 +81,21 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="AnsweBubbleCreatotButton" type="Button" parent="BubbleAdder"]
-layout_mode = 0
-offset_left = 374.0
-offset_top = 633.0
-offset_right = 642.0
-offset_bottom = 771.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -213.0
+offset_right = 148.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("2_dwp64")
-text = "Új válaszbuborék létrehozása"
+text = "Új válaszbuborék
+létrehozása"
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -87,6 +105,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -800.0
+offset_bottom = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_y8m76")
@@ -104,13 +124,14 @@ size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="ImageImportGroup"]
 layout_mode = 0
-offset_left = 373.0
-offset_top = 416.0
-offset_right = 623.0
-offset_bottom = 541.0
+offset_left = 359.0
+offset_top = 395.0
+offset_right = 644.0
+offset_bottom = 542.0
 theme = ExtResource("2_dwp64")
 text = "Importálás fájlrendszerből"
 flat = true
+text_overrun_behavior = 2
 icon_alignment = 1
 expand_icon = true
 
@@ -160,19 +181,23 @@ uppercase = true
 
 [node name="ErrorMsg" type="Label" parent="ImageImportGroup"]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 513.0
-offset_right = 731.0
-offset_bottom = 597.0
+offset_left = 291.0
+offset_top = 539.0
+offset_right = 718.0
+offset_bottom = 623.0
 label_settings = SubResource("LabelSettings_ox6pr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ToMainMenuButton" type="Button" parent="."]
-offset_left = 44.0
-offset_top = 668.0
-offset_right = 228.0
-offset_bottom = 764.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = -121.0
+offset_right = 229.0
+offset_bottom = -21.0
+grow_vertical = 0
 theme = ExtResource("2_dwp64")
 text = "Vissza a főmenübe"
 flat = true

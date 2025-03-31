@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://irdworseorky"]
+[gd_scene load_steps=3 format=3 uid="uid://irdworseorky"]
 
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubble_control.gd" id="1_5mfd4"]
+[ext_resource type="Texture2D" uid="uid://dng42xbxs7ilm" path="res://images/blue_bubble.png" id="2_0hqfb"]
 
 [node name="AnswerBubble" type="LineEdit"]
 offset_right = 67.0625
 offset_bottom = 31.0
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "text"
 alignment = 1
 editable = false
@@ -17,6 +20,7 @@ flat = true
 script = ExtResource("1_5mfd4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -26,5 +30,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1.17319e-07, 0.0938013, 0.12856, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0hqfb")
+expand_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

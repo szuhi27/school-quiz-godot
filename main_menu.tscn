@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvt3j2ejded12"]
+[gd_scene load_steps=10 format=3 uid="uid://dvt3j2ejded12"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1x82x"]
 [ext_resource type="PackedScene" uid="uid://11ghupk4o1ii" path="res://quiz_maker_assets/quiz_maker.tscn" id="2_ka7f0"]
 [ext_resource type="PackedScene" uid="uid://jj76fgx27cgu" path="res://main_menu_assets/question_bubble.tscn" id="2_lih13"]
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubbles_group_control.gd" id="5_ofu2u"]
+[ext_resource type="Texture2D" uid="uid://dt6e0htf4s2h" path="res://images/texture-2559993_1920.jpg" id="5_r6usv"]
 [ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
 [ext_resource type="Theme" uid="uid://cjxetyjm64h4i" path="res://common_assets/button_base_theme.tres" id="7_7bjvb"]
-[ext_resource type="Texture2D" uid="uid://bev36gb65blk4" path="res://images/button.png" id="8_ye4tf"]
+[ext_resource type="Texture2D" uid="uid://bielg26d81kbd" path="res://images/paper-1749148_1920.jpg" id="7_esism"]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_1x82x")
@@ -23,16 +24,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control2"]
+[node name="BackgroundTextureRect" type="TextureRect" parent="Control2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0, 0.443756, 0.443759, 1)
+texture = ExtResource("5_r6usv")
+expand_mode = 1
 
 [node name="QuizImage" type="TextureRect" parent="Control2"]
 layout_mode = 1
@@ -71,6 +71,7 @@ script = ExtResource("5_ofu2u")
 answer_bubble = ExtResource("6_v6kc5")
 
 [node name="ColorRect2" type="ColorRect" parent="Control2/AnswerBubblesGroup"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +79,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.692609, 0.692609, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Control2/AnswerBubblesGroup"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_esism")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control2/AnswerBubblesGroup"]
 layout_mode = 1
@@ -160,14 +172,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = -192.0
-offset_right = 356.0
-offset_bottom = -79.0
+offset_left = 141.0
+offset_top = -213.0
+offset_right = 395.0
+offset_bottom = -74.0
 grow_vertical = 0
 theme = ExtResource("7_7bjvb")
 text = "Importáljon egy quizt!"
-icon = ExtResource("8_ye4tf")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -179,15 +190,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -330.0
-offset_top = -190.0
-offset_right = -114.0
+offset_left = -367.0
+offset_top = -216.0
+offset_right = -113.0
 offset_bottom = -77.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("7_7bjvb")
 text = "Új quiz készítése"
-icon = ExtResource("8_ye4tf")
 flat = true
 icon_alignment = 1
 expand_icon = true

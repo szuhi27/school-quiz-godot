@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cjxetyjm64h4i"]
 
-[ext_resource type="Texture2D" uid="uid://bev36gb65blk4" path="res://images/button.png" id="1_ibgyh"]
+[ext_resource type="Texture2D" uid="uid://p57rski081sv" path="res://images/blue_sqr_btn.png" id="1_ictpj"]
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/constants/outline_size = 3
-Button/font_sizes/font_size = 17
-Button/icons/icon = ExtResource("1_ibgyh")
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 19
+Button/icons/icon = ExtResource("1_ictpj")
