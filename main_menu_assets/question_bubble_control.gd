@@ -1,5 +1,8 @@
 extends LineEdit
 
+@export var good_answer_texture : Texture2D
+@export var bad_answer_texture : Texture2D
+
 var _size_x_before_change : float
 var _base_size_x
 var _base_position
@@ -82,8 +85,8 @@ func _create_drag_preview(t : String) -> Variant:
 
 func check_answer():
 	if _correct_answer == text:
-		$ColorRect.color = Color.GREEN
+		$TextureRect.texture = good_answer_texture
 	else:
-		$ColorRect.color = Color.RED
+		$TextureRect.texture = bad_answer_texture
 	
 	add_theme_color_override("font_uneditable_color",Color.BLACK) 

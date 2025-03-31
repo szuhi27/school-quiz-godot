@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://jj76fgx27cgu"]
+[gd_scene load_steps=5 format=3 uid="uid://jj76fgx27cgu"]
 
 [ext_resource type="Script" path="res://main_menu_assets/question_bubble_control.gd" id="1_dflmq"]
+[ext_resource type="Texture2D" uid="uid://bsigrfmrxsdkw" path="res://images/green_bubble.png" id="2_e6yl2"]
+[ext_resource type="Texture2D" uid="uid://b6xxn2vbu0wsn" path="res://images/grey_bubble.png" id="2_pj1nx"]
+[ext_resource type="Texture2D" uid="uid://b3jlapiq7wir3" path="res://images/red_bubble.png" id="3_3824m"]
 
 [node name="LineEdit" type="LineEdit"]
 offset_right = 67.0625
 offset_bottom = 31.0
-theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
 placeholder_text = "?"
 alignment = 1
 editable = false
@@ -18,8 +22,10 @@ selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 flat = true
 script = ExtResource("1_dflmq")
+good_answer_texture = ExtResource("2_e6yl2")
+bad_answer_texture = ExtResource("3_3824m")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -27,5 +33,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0.458824, 1)
+texture = ExtResource("2_pj1nx")
+expand_mode = 1

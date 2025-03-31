@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dng42xbxs7ilm" path="res://images/blue_bubble.png" id="2_0hqfb"]
 
 [node name="AnswerBubble" type="LineEdit"]
-offset_right = 67.0625
-offset_bottom = 31.0
+offset_right = 81.8125
+offset_bottom = 36.0
 theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "text"
@@ -41,5 +41,3 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_0hqfb")
 expand_mode = 1
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
