@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://irdworseorky"]
+[gd_scene load_steps=4 format=3 uid="uid://irdworseorky"]
 
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubble_control.gd" id="1_5mfd4"]
 [ext_resource type="Texture2D" uid="uid://dng42xbxs7ilm" path="res://images/blue_bubble.png" id="2_0hqfb"]
+[ext_resource type="Texture2D" uid="uid://bakowks5gx8l2" path="res://images/bubble_blue_wide.png" id="2_vana7"]
 
 [node name="AnswerBubble" type="LineEdit"]
 offset_right = 81.8125
@@ -18,6 +19,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 flat = true
 script = ExtResource("1_5mfd4")
+wide_texture = ExtResource("2_vana7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

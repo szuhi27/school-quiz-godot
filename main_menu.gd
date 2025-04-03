@@ -92,7 +92,7 @@ func _create_answer_bubbles(data: Array):
 	
 	for i in data:
 		var new_answer = answer_bubble.instantiate()
-		new_answer.set_text(i.text)
+		new_answer.create_bubble(i.text)
 		$Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
 
 

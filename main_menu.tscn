@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvt3j2ejded12"]
+[gd_scene load_steps=11 format=3 uid="uid://dvt3j2ejded12"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1x82x"]
 [ext_resource type="PackedScene" uid="uid://11ghupk4o1ii" path="res://quiz_maker_assets/quiz_maker.tscn" id="2_ka7f0"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubbles_group_control.gd" id="5_ofu2u"]
 [ext_resource type="Texture2D" uid="uid://dt6e0htf4s2h" path="res://images/texture-2559993_1920.jpg" id="5_r6usv"]
+[ext_resource type="Texture2D" uid="uid://ca6f0s47glnd6" path="res://logo.png" id="6_8eghv"]
 [ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
 [ext_resource type="Theme" uid="uid://cjxetyjm64h4i" path="res://common_assets/button_base_theme.tres" id="7_7bjvb"]
 [ext_resource type="Texture2D" uid="uid://bielg26d81kbd" path="res://images/paper-1749148_1920.jpg" id="7_esism"]
@@ -33,6 +34,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_r6usv")
 expand_mode = 1
+
+[node name="Logo" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -384.0
+offset_right = 250.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_8eghv")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="QuizImage" type="TextureRect" parent="Control2"]
 layout_mode = 1
@@ -112,6 +130,8 @@ horizontal_scroll_mode = 0
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
 columns = 4
 
 [node name="CheckButton" type="Button" parent="Control2/AnswerBubblesGroup"]
@@ -128,19 +148,29 @@ offset_right = 81.5
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_7bjvb")
 text = "Ellenőrzés"
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="CloseQuizButton" type="Button" parent="Control2/AnswerBubblesGroup"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -76.0
-offset_top = 4.0
+offset_left = -82.0
+offset_top = -9.0
 offset_right = -4.0
 offset_bottom = 35.0
 grow_horizontal = 0
+theme = ExtResource("7_7bjvb")
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 14
 text = "Főmenü"
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ImportGroup" type="Control" parent="."]
 layout_mode = 3

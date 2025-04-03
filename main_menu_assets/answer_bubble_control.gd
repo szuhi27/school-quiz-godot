@@ -1,5 +1,12 @@
 extends LineEdit
 
+@export var wide_texture : Texture2D
+
+func create_bubble(t : String):
+	text = t
+	if t.length() > 14:
+		$TextureRect.texture = wide_texture
+
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	var data = {}
 	data["text"] = text

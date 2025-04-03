@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="school-quiz-godot"
+config/name="Bubble Quiz"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://logo.png"
 
 [display]
 
