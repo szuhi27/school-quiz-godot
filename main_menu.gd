@@ -93,14 +93,14 @@ func _create_answer_bubbles(data: Array):
 	for i in data:
 		var new_answer = answer_bubble.instantiate()
 		new_answer.create_bubble(i.text)
-		$Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
+		$Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
 
 
 func _reset_quiz():
 	$Control2/QuizImage.texture = null
 	for child in $Control2/QuestionGroup.get_children():
 		child.queue_free()
-	for child in $Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer.get_children():
+	for child in $Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer.get_children():
 		child.queue_free()
 	$Control2/AnswerBubblesGroup.hide()
 
@@ -109,9 +109,9 @@ func _on_check_button_pressed() -> void:
 	for question in $Control2/QuestionGroup.get_children():
 		question.check_answer()
 	
-	$Control2/AnswerBubblesGroup.hide()
-	$ImportGroup/ErrorLabel.text = ""
-	$ImportGroup.show()
+	#$Control2/AnswerBubblesGroup.hide()
+	#$ImportGroup/ErrorLabel.text = ""
+	#$ImportGroup.show()
 
 func _on_close_quiz_button_pressed() -> void:
 	_reset_quiz()

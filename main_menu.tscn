@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://c3xpxpj4hacdk" path="res://common_assets/error_label_settings.tres" id="3_4kk3a"]
 [ext_resource type="Script" path="res://main_menu_assets/answer_bubbles_group_control.gd" id="5_ofu2u"]
 [ext_resource type="Texture2D" uid="uid://dt6e0htf4s2h" path="res://images/texture-2559993_1920.jpg" id="5_r6usv"]
-[ext_resource type="Texture2D" uid="uid://ca6f0s47glnd6" path="res://logo.png" id="6_8eghv"]
+[ext_resource type="Texture2D" uid="uid://ca6f0s47glnd6" path="res://icon.png" id="6_8eghv"]
 [ext_resource type="PackedScene" uid="uid://irdworseorky" path="res://main_menu_assets/answer_bubble.tscn" id="6_v6kc5"]
 [ext_resource type="Theme" uid="uid://cjxetyjm64h4i" path="res://common_assets/button_base_theme.tres" id="7_7bjvb"]
 [ext_resource type="Texture2D" uid="uid://bielg26d81kbd" path="res://images/paper-1749148_1920.jpg" id="7_esism"]
@@ -121,12 +121,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control2/AnswerBubblesGroup/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2/AnswerBubblesGroup/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 17
+text = "Húzd a válaszokat a helyükre!"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="AnswerBubblesGridContainer" type="GridContainer" parent="Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer"]
+[node name="AnswerBubblesGridContainer" type="GridContainer" parent="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 6
@@ -255,8 +267,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="child_entered_tree" from="Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_entered_tree"]
-[connection signal="child_exiting_tree" from="Control2/AnswerBubblesGroup/MarginContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_exiting_tree"]
+[connection signal="child_entered_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_exiting_tree"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="Control2/AnswerBubblesGroup" method="_on_check_button_pressed"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CloseQuizButton" to="." method="_on_close_quiz_button_pressed"]
