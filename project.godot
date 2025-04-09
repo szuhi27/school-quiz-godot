@@ -13,7 +13,7 @@ config_version=5
 config/name="Bubble Quiz"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://logo.png"
+config/icon="res://icon.png"
 
 [display]
 
