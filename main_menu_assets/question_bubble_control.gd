@@ -3,13 +3,11 @@ extends LineEdit
 @export var good_answer_texture : Texture2D
 @export var bad_answer_texture : Texture2D
 
-var _size_x_before_change : float
+var _correct_answer
 var _base_size_x
 var _base_position
-var _correct_answer
 
 func _ready() -> void:
-	_size_x_before_change = size.x
 	_base_size_x = size.x
 	_base_position = Vector2(global_position.x, global_position.y)
 
@@ -22,7 +20,7 @@ func set_global_position_y(f: float):
 func set_correct_answer(answ : String):
 	_correct_answer = answ
 
-
+#=====DRAG AND DROP=====
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data["origin_node"] == self:
 		return false
@@ -82,6 +80,7 @@ func _create_drag_preview(t : String) -> Variant:
 	
 	return prev
 
+#=====
 
 func check_answer():
 	if _correct_answer == text:
@@ -90,3 +89,7 @@ func check_answer():
 		$TextureRect.texture = bad_answer_texture
 	
 	add_theme_color_override("font_uneditable_color",Color.BLACK) 
+
+func show_correct_answer():
+	if _correct_answer != text:
+		$CorrectAnswer.text = _correct_answer

@@ -147,6 +147,25 @@ theme_override_constants/v_separation = 5
 columns = 4
 
 [node name="CheckButton" type="Button" parent="Control2/AnswerBubblesGroup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -52.0
+offset_right = 82.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_7bjvb")
+text = "Ellenőrzés"
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="CorrectAnswerbutton" type="Button" parent="Control2/AnswerBubblesGroup"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -154,14 +173,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -38.0
-offset_right = 81.5
-offset_bottom = 38.0
+offset_left = -302.0
+offset_top = -20.0
+offset_right = -139.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_7bjvb")
-text = "Ellenőrzés"
+text = "Helyes válaszok
+mutatása"
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RetryButton" type="Button" parent="Control2/AnswerBubblesGroup"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = -20.0
+offset_right = 314.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_7bjvb")
+text = "Újrapróbálkozás"
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -270,7 +310,8 @@ grow_vertical = 2
 [connection signal="child_entered_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_exiting_tree"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="." method="_on_check_button_pressed"]
-[connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="Control2/AnswerBubblesGroup" method="_on_check_button_pressed"]
+[connection signal="pressed" from="Control2/AnswerBubblesGroup/CorrectAnswerbutton" to="." method="_on_correct_answerbutton_pressed"]
+[connection signal="pressed" from="Control2/AnswerBubblesGroup/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CloseQuizButton" to="." method="_on_close_quiz_button_pressed"]
 [connection signal="pressed" from="ImportGroup/ImportQuizButton" to="." method="_on_import_quiz_button_pressed"]
 [connection signal="pressed" from="ImportGroup/NewQuizButton" to="." method="_on_new_quiz_button_pressed"]

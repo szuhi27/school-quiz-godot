@@ -109,10 +109,17 @@ func _on_check_button_pressed() -> void:
 	for question in $Control2/QuestionGroup.get_children():
 		question.check_answer()
 	
-	#$Control2/AnswerBubblesGroup.hide()
-	#$ImportGroup/ErrorLabel.text = ""
-	#$ImportGroup.show()
+	$Control2/AnswerBubblesGroup/CheckButton.hide()
+	$Control2/AnswerBubblesGroup/CorrectAnswerbutton.show()
+	$Control2/AnswerBubblesGroup/RetryButton.show()
 
+func _on_correct_answerbutton_pressed() -> void:
+	for question in $Control2/QuestionGroup.get_children():
+		question.show_correct_answer()
+
+func _on_retry_button_pressed() -> void:
+	pass # Replace with function body.
+	
 func _on_close_quiz_button_pressed() -> void:
 	_reset_quiz()
 	$ImportGroup/ErrorLabel.text = ""
