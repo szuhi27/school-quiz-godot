@@ -6,6 +6,8 @@ extends Node
 
 const WRONG_FILE : String = "Helytelen (vagy sérült) file! Kérem válasszon egy itt korábban létrehozott '.json' filet!"
 
+var _quiz_data
+
 func _ready() -> void:
 	get_tree().get_root().files_dropped.connect(_on_files_dropped)
 
@@ -25,43 +27,28 @@ func  _on_files_dropped(files):
 	else:
 		_try_load_quiz_file(files[0])
 
+#=====LOAD QUIZ=====
+
 func _try_load_quiz_file(path: String):
 	if path.get_extension() != "json":
 		$ImportGroup/ErrorLabel.text = WRONG_FILE
 	else:
 		var file = FileAccess.open(path, FileAccess.READ)
-		_load_quiz(file.get_as_text())
+		_reset_quiz()
+		_validate_quiz(file.get_as_text())
 		file.close()
 
 #validation does not look too nice, but seems like there is not a better way in godot for error handling
 #also maybe this is too overkill especially for the scope of the project, but practice
-func _load_quiz(_json_string: String):
-	_reset_quiz()
-	
+func _validate_quiz(_json_string: String):
 	var json_string = _json_string
 	var json = JSON.new()
 	var parse_result = json.parse(json_string)
-	
+	 
 	if parse_result == OK:
-		var data = json.data
-		
-		if _validate_json(data):
-			var image = Image.new()
-			var correct_image = image.load_png_from_buffer(Marshalls.base64_to_raw(data["image"]))
-			if correct_image == OK:
-				var image_texture = ImageTexture.new()
-				image_texture.set_image(image)
-				$Control2/QuizImage.texture = image_texture
-				
-				_create_question_bubbles(data["answer_bubbles"])
-				
-				$Control2/AnswerBubblesGroup.show()
-				_create_answer_bubbles(data["answer_bubbles"])
-				
-				$ImportGroup/ErrorLabel.text = ""
-				$ImportGroup.hide()
-			else:
-				$ImportGroup/ErrorLabel.text = WRONG_FILE
+		_quiz_data = json.data
+		if _validate_json(_quiz_data):
+			_load_quiz()
 		else:
 			$ImportGroup/ErrorLabel.text = WRONG_FILE
 	else:
@@ -79,6 +66,24 @@ func _validate_json(data: Variant) -> bool:
 	
 	return true
 
+func _load_quiz():
+	var image = Image.new()
+	var correct_image = image.load_png_from_buffer(Marshalls.base64_to_raw(_quiz_data["image"]))
+	if correct_image == OK:
+		var image_texture = ImageTexture.new()
+		image_texture.set_image(image)
+		$Control2/QuizImage.texture = image_texture
+		
+		_create_question_bubbles(_quiz_data["answer_bubbles"])
+		
+		$Control2/AnswerBubblesGroup.show()
+		_create_answer_bubbles(_quiz_data["answer_bubbles"])
+		
+		$ImportGroup/ErrorLabel.text = ""
+		$ImportGroup.hide()
+	else:
+		$ImportGroup/ErrorLabel.text = WRONG_FILE
+
 func _create_question_bubbles(data: Array):
 	for i in data:
 		var new_question = question_bubble.instantiate()
@@ -95,6 +100,7 @@ func _create_answer_bubbles(data: Array):
 		new_answer.create_bubble(i.text)
 		$Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer.add_child(new_answer)
 
+#=====
 
 func _reset_quiz():
 	$Control2/QuizImage.texture = null
@@ -103,7 +109,8 @@ func _reset_quiz():
 	for child in $Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer.get_children():
 		child.queue_free()
 	$Control2/AnswerBubblesGroup.hide()
-
+	$Control2/AnswerBubblesGroup/CorrectAnswerbutton.hide()
+	$Control2/AnswerBubblesGroup/RetryButton.hide()
 
 func _on_check_button_pressed() -> void:
 	for question in $Control2/QuestionGroup.get_children():
@@ -118,8 +125,9 @@ func _on_correct_answerbutton_pressed() -> void:
 		question.show_correct_answer()
 
 func _on_retry_button_pressed() -> void:
-	pass # Replace with function body.
-	
+	_reset_quiz()
+	_load_quiz()
+
 func _on_close_quiz_button_pressed() -> void:
 	_reset_quiz()
 	$ImportGroup/ErrorLabel.text = ""
