@@ -298,15 +298,6 @@ filters = PackedStringArray("*.json")
 show_hidden_files = true
 use_native_dialog = true
 
-[node name="SelectedAnswerBubbles" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [connection signal="child_entered_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Control2/AnswerBubblesGroup/MarginContainer/VBoxContainer/ScrollContainer/AnswerBubblesGridContainer" to="Control2/AnswerBubblesGroup" method="_on_answer_bubbles_grid_container_child_exiting_tree"]
 [connection signal="pressed" from="Control2/AnswerBubblesGroup/CheckButton" to="." method="_on_check_button_pressed"]
